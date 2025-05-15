@@ -46,7 +46,7 @@ const getById = async (req, res) => {
   res.send(expensesService.normalize(expenses));
 };
 
-const remove = (req, res) => {
+const remove = async (req, res) => {
   const { id } = req.params;
   const expenses = expensesService.getById(id);
 
@@ -56,7 +56,7 @@ const remove = (req, res) => {
     return;
   }
 
-  expensesService.remove(id);
+  await expensesService.remove(id);
   res.sendStatus(204);
 };
 
